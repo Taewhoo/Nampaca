@@ -1,0 +1,298 @@
+{
+    "os": "Linux-4.15.0-118-generic-x86_64-with-glibc2.27",
+    "python": "3.9.16",
+    "heartbeatAt": "2023-04-03T08:46:34.921917",
+    "startedAt": "2023-04-03T08:46:34.212241",
+    "docker": null,
+    "cuda": "10.2.89",
+    "args": [
+        "--model_name_or_path",
+        "hfweights/llama-7b",
+        "--data_path",
+        "./alpaca_data.json",
+        "--fp16",
+        "True",
+        "--output_dir",
+        "output",
+        "--num_train_epochs",
+        "3",
+        "--per_device_train_batch_size",
+        "1",
+        "--per_device_eval_batch_size",
+        "1",
+        "--gradient_accumulation_steps",
+        "1",
+        "--evaluation_strategy",
+        "no",
+        "--save_strategy",
+        "steps",
+        "--save_steps",
+        "2000",
+        "--save_total_limit",
+        "1",
+        "--learning_rate",
+        "2e-5",
+        "--weight_decay",
+        "0.",
+        "--warmup_ratio",
+        "0.03",
+        "--lr_scheduler_type",
+        "cosine",
+        "--logging_steps",
+        "1",
+        "--fsdp",
+        "full_shard auto_wrap",
+        "--fsdp_transformer_layer_cls_to_wrap",
+        "LLaMADecoderLayer",
+        "--fp16",
+        "True"
+    ],
+    "state": "running",
+    "program": "/mnt/data1/namz2/taewhoo/NLP/stanford_alpaca/train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/tatsu-lab/stanford_alpaca.git",
+        "commit": "aa65c492bb788e144712daab42bc5d11c2761591"
+    },
+    "email": "jeight@mediazen.co.kr",
+    "root": "/mnt/data1/namz2/taewhoo/NLP/stanford_alpaca",
+    "host": "mint",
+    "username": "namz2",
+    "executable": "/home/namz2/.conda/envs/alpaca/bin/python",
+    "cpu_count": 20,
+    "cpu_count_logical": 40,
+    "cpu_freq": {
+        "current": 1282.3472249999998,
+        "min": 1200.0,
+        "max": 3600.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1199.505,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1402.969,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.288,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1197.097,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.248,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1205.592,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.363,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1459.766,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.31,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1408.297,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1384.906,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.212,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.206,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1798.982,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.451,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.743,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.243,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.46,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1293.94,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1261.125,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1204.089,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1399.731,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1194.822,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.345,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.579,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.777,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.367,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1596.166,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.543,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1399.705,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1346.664,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.4,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.401,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1799.107,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.478,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.507,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.353,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1199.308,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1298.415,
+            "min": 1200.0,
+            "max": 3600.0
+        },
+        {
+            "current": 1200.698,
+            "min": 1200.0,
+            "max": 3600.0
+        }
+    ],
+    "disk": {
+        "total": 1758.95463180542,
+        "used": 386.44588470458984
+    },
+    "gpu": "Tesla V100-DGXS-32GB",
+    "gpu_count": 4,
+    "gpu_devices": [
+        {
+            "name": "Tesla V100-DGXS-32GB",
+            "memory_total": 34087305216
+        },
+        {
+            "name": "Tesla V100-DGXS-32GB",
+            "memory_total": 34087305216
+        },
+        {
+            "name": "Tesla V100-DGXS-32GB",
+            "memory_total": 34087305216
+        },
+        {
+            "name": "Tesla V100-DGXS-32GB",
+            "memory_total": 34087305216
+        }
+    ],
+    "memory": {
+        "total": 251.82464218139648
+    }
+}
