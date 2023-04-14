@@ -6,7 +6,9 @@ import base64
 import requests
 import random
 
-mykey = "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"
+import pickle, sys
+
+mykey = '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'
 
 def toRandIm(outputs_list):  # when n > 1
     img_store = []
@@ -47,12 +49,17 @@ def tti_edit(image_to_editP, maskP, text): # must both be square PNG images less
 # 3. variation: a variation of a given image.
 def tti_var(image_to_varP):
     openai.api_key = mykey
+
+    serialized = pickle.dumps(image_to_varP)
+    print(sys.getsizeof(serialized))
+    
     response = openai.Image.create_variation(
+    # image=image_to_varP,
     image=open(f"{image_to_varP}", "rb"),
     n=1,
     size="1024x1024")
     outputs = response['data']
-
+    print(outputs)
     result = toRandIm(outputs)
 
     return result
@@ -60,16 +67,20 @@ def tti_var(image_to_varP):
 
 def demo(fun):
     if fun == tti_create:
-        gr_input = gr.inputs.Textbox(label="Input Text")
+        gr_input = gr.Textbox(label="Input text")
 
     elif fun == tti_edit:
-        gr_input = gr.inputs.Textbox(label="Input Text")
-
+        gr_input = [
+            gr.Image(label="Input image"),
+            gr.Image(label="Input masked image"),
+            gr.Textbox(label="Input text")
+        ]
     elif fun == tti_var:
-        gr_input = gr.inputs.Textbox(label="Input Text")
+        gr_input = gr.Image(label="Input image")
 
-    gr_output = gr.outputs.Image(type="filepath")
+    gr_output = gr.Image(type="filepath")
 
-    gr.Interface(fn=fun, inputs=gr_input, outputs=gr_output, title="Text to Image Converter").launch()
+    gr.Interface(fn=fun, inputs=gr_input, outputs=gr_output, title="Text to Image Converter").launch(share=True)
 
-demo(tti_create)
+# demo(tti_var)
+tti_var('./sample_resized.png')
