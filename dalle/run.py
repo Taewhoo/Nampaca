@@ -1,30 +1,33 @@
 import openai
 import gradio as gr
 from PIL import Image
+import io
 from io import BytesIO
 import base64
 import requests
 import random
 
-import pickle, sys
+import numpy as np
 
-mykey = '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'
+mykey = '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'
 
 def toRandIm(outputs_list):  # when n > 1
     img_store = []
-
     for output in outputs_list:
         img_url = output["url"]
         img_store.append(img_url)
     return random.choice(img_store)
+
 ###########################################################################################
+
 # 1. create: t -> i
 def tti_create(text):
     openai.api_key = mykey
+    
     response = openai.Image.create(
     prompt = f"{text}",
     n=1,
-    size="256x256")
+    size="1024x1024")
     outputs = response['data'] 
     
     result = toRandIm(outputs)
@@ -34,28 +37,44 @@ def tti_create(text):
 # 2. ⭐️ 먼가 더 편리할 필요가 있음. edit: edit and extend an image by uploading a mask
 def tti_edit(image_to_editP, maskP, text): # must both be square PNG images less than 4MB in size
     openai.api_key = mykey
+    
+    img_to_edit = Image.fromarray(image_to_editP)
+    img_masked = Image.fromarray(maskP)
+    img_masked = img_masked.convert("RGBA")
+
+    with io.BytesIO() as output1:
+        img_to_edit.save(output1, format='PNG')
+        img_to_edit_bytes = output1.getvalue() # convert array -> image obj. -> bytes obj.
+        
+    with io.BytesIO() as output2:
+        img_masked.save(output2, format='PNG')
+        img_masked_bytes = output2.getvalue()
+    
     response = openai.Image.create_edit(
-    image=open(f"{image_to_editP}", "rb"),
-    mask=open(f"{maskP}", "rb"), # The non-transparent areas of the mask are not used when generating the output, so they don’t necessarily need to match the original image 
+    image=img_to_edit_bytes,
+    mask=img_masked_bytes, # The non-transparent areas of the mask are not used when generating the output, so they don’t necessarily need to match the original image 
     prompt=f"{text}",
     n=1,
-    size="256x256")
-    outputs = response['data']
+    size="1024x1024"
+    )
+    outputs = response['data'][0]['url']
+    print(outputs)
 
-    result = toRandIm(outputs)
-
+    # result = toRand Im(outputs)
+    result = outputs
     return result
 
 # 3. variation: a variation of a given image.
 def tti_var(image_to_varP):
     openai.api_key = mykey
-
-    serialized = pickle.dumps(image_to_varP)
-    print(sys.getsizeof(serialized))
+    
+    img = Image.fromarray(image_to_varP)
+    with io.BytesIO() as output:
+        img.save(output, format='PNG')
+        image_bytes = output.getvalue() # convert array -> image obj. -> bytes obj.
     
     response = openai.Image.create_variation(
-    # image=image_to_varP,
-    image=open(f"{image_to_varP}", "rb"),
+    image=image_bytes,
     n=1,
     size="1024x1024")
     outputs = response['data']
@@ -82,5 +101,4 @@ def demo(fun):
 
     gr.Interface(fn=fun, inputs=gr_input, outputs=gr_output, title="Text to Image Converter").launch(share=True)
 
-# demo(tti_var)
-tti_var('./sample_resized.png')
+demo(tti_var)
