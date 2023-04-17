@@ -9,7 +9,7 @@ import random
 
 import numpy as np
 
-mykey = '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'
+mykey = ##insert openai key##
 
 def toRandIm(outputs_list):  # when n > 1
     img_store = []
